@@ -1,0 +1,36 @@
+
+{% extends "base.html" %} {%block title%} Add Pet {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="display-1 text-center">Add A Pet</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6 border border-dark">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="name" class="my-2">Name: </label>
+                    <input type="text" size=25 id="name" name="name" class="d-block">
+
+                    <label for="species" class="my-2">Species: </label>
+                    <input type="text" size=15 id="species" name="species" class="d-block">
+
+                    <label for="photo-link" class="my-2">Photo Link: </label>
+                    <input type="text" size=50 id="photo-link" name="photo-link" class="d-block">
+
+                    <label for="age" class="my-2">Age: </label>
+                    <input type="text" size=5 id="age" name="age" class="d-block">
+
+                    <label for="notes" class="my-2">Notes: </label>
+                    <input type="text" size=25 id="notes" name="notes"class="d-block">
+                </div>
+                <div class="my-3">
+                <button class="btn  btn-success  btn-lg">Submit</button>
+                <a href="/" class="btn btn-danger btn-lg">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% end block %}
