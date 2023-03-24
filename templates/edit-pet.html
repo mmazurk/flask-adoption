@@ -3,38 +3,35 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="display-1 text-center">Pet Name</h1>
+    <h1 class="display-1 text-center">{{pet.name}}</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <img src="https://cdn.pixabay.com/photo/2018/02/17/17/50/cute-3160464_960_720.jpg" alt="user photo"
-            class="img-fluid">
+            <img src="{{pet.photo_url}}" alt="user photo" class="img-fluid">
         </div>
         <div class="col-md-6 border border-dark">
             <form method="POST">
+                {{ form.hidden_tag() }}
                 <div class="form-group">
-                    <label for="name" class="my-2">Name: </label>
-                    <input type="text" size=25 id="name" name="name" class="d-block">
 
-                    <label for="species" class="my-2">Species: </label>
-                    <input type="text" size=15 id="species" name="species" class="d-block">
-
-                    <label for="photo-link" class="my-2">Photo Link: </label>
-                    <input type="text" size=50 id="photo-link" name="photo-link" class="d-block">
-
-                    <label for="age" class="my-2">Age: </label>
-                    <input type="text" size=5 id="age" name="age" class="d-block">
-
-                    <label for="notes" class="my-2">Notes: </label>
-                    <input type="text" size=25 id="notes" name="notes"class="d-block">
+                    {% for field in form if field.widget.input_type != 'hidden' %}
+                    {{ field.label(class_ = "my_2") }}
+                    {{ field(class_ = "d-block") }}
+                        {% for error in field.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    {% endfor %}
+                
                 </div>
-                <div class="my-3">
-                <button class="btn  btn-success  btn-lg">Submit</button>
-                <a href="/pet.pet_id>/show" class="btn btn-danger btn-lg">Go Back</a>
+                <div class="my-3"> 
+                    <button class="btn btn-success">Submit</button>
+                    <a href="/{{pet.pet_id}}/show" class="btn btn-danger">Go Back</a>
                 </div>
             </form>
+
+
         </div>
     </div>
 </div>
 
 
-{% end block %}
+{% endblock %}
