@@ -37,15 +37,13 @@ def edit_pet(pet_id):
     
     form = PetForm()
 
-    ## I just need to fix this so it edits and existing entry instead of adding a new one
-
     if form.validate_on_submit():
-        name = form.name.data
-        species = form.species.data
-        photo_url = form.photo_url.data
-        age = form.age.data
-        notes = form.notes.data
-        pet = Pet(name = name, species = species, photo_url = photo_url, age = age, notes = notes)
+        pet = Pet.query.get_or_404(pet_id) 
+        pet.name = form.name.data
+        pet.species = form.species.data
+        pet.photo_url = form.photo_url.data
+        pet.age = form.age.data
+        pet.notes = form.notes.data
         db.session.add(pet)
         db.session.commit()
         return redirect('/')
